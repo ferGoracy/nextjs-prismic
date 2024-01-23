@@ -25,7 +25,7 @@ export default function Home() {
               vulputate sem vitae, sodales metus. Donec bibendum vel ante non
               gravida.
             </p>
-            <Button Text="Continuar" />
+            <Button Text="Continuar" Href="/dashboard" />
           </div>
 
           <div className="flex w-full justify-around">

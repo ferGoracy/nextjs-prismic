@@ -26,7 +26,7 @@ export default function ImageButtonCard({ style }: Props) {
         </p>
       </div>
       <div className="px-6 pt-4 pb-2">
-        <Button Text="Ver más" />
+        <Button Text="Ver más" Href="/dashboard" />
       </div>
     </div>
   );
