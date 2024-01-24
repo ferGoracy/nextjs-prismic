@@ -4,8 +4,6 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type ContentDocumentDataSlicesSlice = never;
-
 /**
  * Content for Content documents
  */
@@ -20,83 +18,19 @@ interface ContentDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   dashboard_content: prismic.KeyTextField;
-
-  /**
-   * Dashboard Image field in *Content*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content.dashboard_image
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  dashboard_image: prismic.ImageField<never>;
-
-  /**
-   * Slice Zone field in *Content*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<ContentDocumentDataSlicesSlice>;
-
-  /**
-   * Title field in *Content*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content.title
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  title: prismic.RichTextField /**
-   * Meta Description field in *Content*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: content.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *Content*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  meta_image: prismic.ImageField<never>;
-
-  /**
-   * Meta Title field in *Content*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: content.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_title: prismic.KeyTextField;
 }
 
 /**
  * Content document from Prismic
  *
  * - **API ID**: `content`
- * - **Repeatable**: `true`
+ * - **Repeatable**: `false`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
 export type ContentDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<
+  prismic.PrismicDocumentWithoutUID<
     Simplify<ContentDocumentData>,
     "content",
     Lang
@@ -113,11 +47,6 @@ declare module "@prismicio/client" {
   }
 
   namespace Content {
-    export type {
-      ContentDocument,
-      ContentDocumentData,
-      ContentDocumentDataSlicesSlice,
-      AllDocumentTypes,
-    };
+    export type { ContentDocument, ContentDocumentData, AllDocumentTypes };
   }
 }
